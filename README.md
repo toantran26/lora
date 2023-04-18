@@ -57,4 +57,4 @@ Remove config cache
 php artisan config:clear
 ```
 ## Author
-Minh HVM - hoangminh99vp@gmail.com
+Toàn Trần - toantran26106@gmail.com
