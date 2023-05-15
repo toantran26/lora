@@ -17,6 +17,7 @@ class CreateNodeTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('code')->nullable();
+            $table->string('type')->nullable();
             $table->string('rec')->nullable();
             $table->string('remote')->nullable();
             $table->unsignedBigInteger('gateway_id')->nullable();

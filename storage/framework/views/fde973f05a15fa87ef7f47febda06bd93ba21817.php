@@ -35,82 +35,69 @@
                         <a href="#" role="button" data-toggle="modal" data-target="#create_model"
                             class="btn btn-success"><i class="fas fa-plus"></i> Thêm mới</a>
                     </div>
+                    <?php if($data->type == 1): ?>
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"> Thông điều khiển <?php echo e($data->name); ?> </h3>
+                            <h3 class="card-title"> Thông tin chi tiết node : <?php echo e($data->name); ?> </h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
-                            <nav class="w-100 mt-3">
-                                <div class="nav nav-tabs" id="product-tab" role="tablist">
-                                    <?php $__currentLoopData = $data->node; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <a class="nav-item nav-link <?php echo e(($key == 0) ? 'active':''); ?>" id="node-<?php echo e($item->id); ?>-tab" data-toggle="tab" href="#node-<?php echo e($item->id); ?>" role="tab" aria-controls="node-<?php echo e($item->id); ?>"><?php echo e($item->name); ?> - <?php echo e($item->code); ?></a>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </div>
-                              </nav>
-                            <div class="width-800 pt-4 pb-4 <?php echo e($data->code); ?>">
-                                <div class="tab-content p-3" id="nav-tabContent">
-                                    <?php $__currentLoopData = $data->node; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="tab-pane fade show <?php echo e(($key == 0) ? 'active':''); ?>" id="node-<?php echo e($item->id); ?>" role="tabpanel" aria-labelledby="node-<?php echo e($item->id); ?>-tab"> 
-                                        <div class="row">
-                                            <div class="col-lg-6 col-12">
-                                                <div class="bg-box-top">
-                                                    <div class="p-3">
-                                                        <div class="pb-2 box-header">
-                                                            <div class="text_header">
-                                                                <span>Điều khiển Đèn I</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="box-content pt-2 box-light box-light-1">
-                                                            <div class="small-box" style="box-shadow:none">
-                                                                <div class="inner">
-                                                                    <div class="remote">    
-                                                                        <input type="checkbox" class="relay_1" name="relay_1" id="relay_1" data-push="<?php echo e($data->code.'/'.$data->remote); ?>" data-toppic="<?php echo e(hexdec($item->code)); ?>" data-bootstrap-switch data-off-color="danger" data-on-color="success" data-on-text="ON"  data-off-text="OFF"  >
-                                                                    </div>
-                                                                </div>
-                                                                <div class="icon box-color-icon">
-                                                                    <i class="fas fa-lightbulb"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                            <div class="row width-800 pt-4 pb-4 <?php echo e($data->gateway->code); ?>">
+                                <div class="col-lg-6 col-12">
+                                    <div class="bg-box-top">
+                                        <div class="p-3">
+                                            <div class="pb-2 box-header">
+                                                <div class="text_header">
+                                                    <span>Điều khiển Đèn I</span>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 col-12 mb-mt-4">
-                                                <div class="bg-box-top">
-                                                    <div class="p-3">
-                                                        <div class="pb-2 box-header">
-                                                            <div class="text_header">
-                                                                <span>Điều khiển Đèn II</span>
-                                                            </div>
+                                            <div class="box-content pt-2 box-light box-light-1">
+                                                <div class="small-box" style="box-shadow:none">
+                                                    <div class="inner">
+                                                        <div class="remote">    
+                                                            <input type="checkbox" class="relay_1" name="relay_1" id="relay_1"  data-bootstrap-switch data-off-color="danger" data-on-color="success" data-on-text="ON"  data-off-text="OFF"  >
                                                         </div>
-                                                        <div class="box-content pt-2 box-light box-light-2">
-                                                            <div class="small-box" style="box-shadow:none">
-                                                                <div class="inner">
-                                                                    <div class="remote">    
-                                                                        <input type="checkbox" name="relay_2" id="relay_2" data-push="<?php echo e($data->code.'/'.$data->remote); ?>" data-toppic="<?php echo e(hexdec($item->code)); ?>" data-bootstrap-switch data-off-color="danger" data-on-color="success">
-                                                                    </div>
-                    
-                                                                </div>
-                                                                <div class="icon box-color-icon">
-                                                                    <i class="fas fa-lightbulb"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    </div>
+                                                    <div class="icon box-color-icon">
+                                                        <i class="fas fa-lightbulb"></i>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </div>
+                                <div class="col-lg-6 col-12 mb-mt-4">
+                                    <div class="bg-box-top">
+                                        <div class="p-3">
+                                            <div class="pb-2 box-header">
+                                                <div class="text_header">
+                                                    <span>Điều khiển Đèn II</span>
+                                                </div>
+                                            </div>
+                                            <div class="box-content pt-2 box-light box-light-2">
+                                                <div class="small-box" style="box-shadow:none">
+                                                    <div class="inner">
+                                                        <div class="remote">    
+                                                            <input type="checkbox" name="relay_2" id="relay_2" data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                                                        </div>
+        
+                                                    </div>
+                                                    <div class="icon box-color-icon">
+                                                        <i class="fas fa-lightbulb"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <?php else: ?>
                     <!-- /.card -->
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"> Thông số giám sát <?php echo e($data->name); ?> </h3>
+                            <h3 class="card-title"> Thông số giám sát </h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
@@ -137,6 +124,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -253,16 +241,11 @@ unset($__errorArgs, $__bag); ?>
             $('input[name="relay_1"]').on('switchChange.bootstrapSwitch', function (event, state) {
                 if (state === true) {
                     // Checkbox được bật
-                    var push = $(this).attr('data-push');
-                    var toppic = $(this).attr('data-toppic');
-                    public(push,toppic+'#on1');
+                    public('<?php echo e($data->gateway->code."/".$data->gateway->remote); ?>','<?php echo e(hexdec($data->code)); ?>#on1');
                     $(this).parents('.box-light').addClass('active');
                     console.log('Checkbox được bật');
                 } else {
-                    var push = $(this).attr('data-push');
-                    var toppic = $(this).attr('data-toppic');
-                    // public('<?php echo e($data->code."/".$data->remote); ?>','off1');
-                    public(push,toppic+'#off1');
+                    public('<?php echo e($data->gateway->code."/".$data->gateway->remote); ?>','<?php echo e(hexdec($data->code)); ?>#off1');
                     $(this).parents('.box-light').removeClass('active');
                     // Checkbox được tắt
                     console.log('Checkbox được tắt');
@@ -271,18 +254,12 @@ unset($__errorArgs, $__bag); ?>
             $('input[name="relay_2"]').on('switchChange.bootstrapSwitch', function (event, state) {
                 if (state === true) {
                     // Checkbox được bật
-                    var push = $(this).attr('data-push');
-                    var toppic = $(this).attr('data-toppic');
-                    public(push,toppic+'#on2');
-                    // public('<?php echo e($data->code."/".$data->remote); ?>','on2');
+                    public('<?php echo e($data->gateway->code."/".$data->gateway->remote); ?>','<?php echo e(hexdec($data->code)); ?>#on2');
                     $(this).parents('.box-light').addClass('active');
 
                     console.log('Checkbox được bật');
                 } else {
-                    var push = $(this).attr('data-push');
-                    var toppic = $(this).attr('data-toppic');
-                    public(push,toppic+'#off2');
-                    // public('<?php echo e($data->code."/".$data->remote); ?>','off2');
+                    public('<?php echo e($data->gateway->code."/".$data->gateway->remote); ?>','<?php echo e(hexdec($data->code)); ?>#off2');
                     $(this).parents('.box-light').removeClass('active');
 
                     // Checkbox được tắt 
@@ -295,4 +272,4 @@ unset($__errorArgs, $__bag); ?>
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('backend.layout.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/ap24h/Desktop/iot/resources/views/backend/gateway/detail.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('backend.layout.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/ap24h/Desktop/iot/resources/views/backend/node/detail.blade.php ENDPATH**/ ?>

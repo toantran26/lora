@@ -14,6 +14,7 @@ class Node extends Model
     protected $fillable = [
         'name',
         'code',
+        'type',
         'gateway_id',
         'rec',
         'remote',

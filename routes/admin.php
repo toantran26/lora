@@ -82,6 +82,8 @@ use App\Http\Controllers\backend\NodeController;
             Route::get('edit/{id}',[NodeController::class,'edit'])->name('edit-node')->where(['id' => '[0-9]+']);
             Route::post('update/{id}',[NodeController::class,'update'])->name('update-node');
             Route::get('/delete/{id}', [NodeController::class,'destroy'])->name('delete-node')->where(['id' => '[0-9]+']);
+            Route::get('detail/{id}',[NodeController::class,'detail'])->name('detail-node')->where(['id' => '[0-9]+']);
+
         });
 
         Route::group(['prefix' => 'editor'], function () {

@@ -36,11 +36,8 @@
                                         <th>ID</th>
                                         <th>Tài khoản</th>
                                         <th>Họ và tên</th>
-                                        <th>Nhóm quyền</th>
                                         <th>Ngày tạo</th>
-                                        @can('edit users')
-                                            <th>Thao tác</th>
-                                        @endcan
+                                        <th>Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,31 +46,28 @@
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $value->username }}</td>
                                             <td>{{ $value->name }}</td>
-                                            <td><span class="badge badge-info">{{ $value->getRoleNames() }}</span></td>
                                             <td>{{ $value->created_at }}</td>
-                                            @can('edit users')
-                                                <td>
-                                                    <div class=" text-center">
-                                                        <a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle">
-                                                            <span class="fas fa-cog"></span>
-                                                        </a>
-                                                        <ul class="dropdown-menu" id="dropdown{{$value->id}}">
-                                                            <li>
-                                                                <a href="{{ route('post-account-edit', ['id' => $value->id]) }}">
-                                                                    <i class="fas fa-edit"></i>
-                                                                    Chỉnh sửa
-                                                                </a>
-                                                            </li>
-                                                            <li class="remove-button">
-                                                                <a onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này?')" href="#" >
-                                                                    <i class="fa fa-trash" aria-hidden="true"></i> Xóa 
-                                                                </a>
-                                                            
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            @endcan
+                                            <td>
+                                                <div class=" text-center">
+                                                    <a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle">
+                                                        <span class="fas fa-cog"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu" id="dropdown{{$value->id}}">
+                                                        <li>
+                                                            <a href="{{ route('post-account-edit', ['id' => $value->id]) }}">
+                                                                <i class="fas fa-edit"></i>
+                                                                Chỉnh sửa
+                                                            </a>
+                                                        </li>
+                                                        <li class="remove-button">
+                                                            <a onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này?')" href="#" >
+                                                                <i class="fa fa-trash" aria-hidden="true"></i> Xóa 
+                                                            </a>
+                                                        
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
 

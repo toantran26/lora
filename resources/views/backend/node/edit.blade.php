@@ -32,7 +32,24 @@
                         <option value="{{ $item->id }}" {{($item->id == $data->gateway_id) ? 'selected="selected"':'' }}>{{ $item->name }}</option>
                     @endforeach
                 </select>
-              </div>
+            </div>
+            <div class="form-group">
+                <label for="work_shift_id">loại node </label>
+                <div class="work_shift_checkbox clearfix">
+                    <div class="icheck-primary d-inline pr-3">
+                        <input type="radio" id="checkboxPrimary0" value="1" {{($data->type == 1) ? 'checked':'' }} name="type">
+                        <label for="checkboxPrimary0">
+                            AN (điều khiển)
+                        </label>
+                    </div>
+                    <div class="icheck-primary d-inline">
+                        <input type="radio" id="checkboxPrimary1" value="2" {{($data->type == 2) ? 'checked':'' }}  name="type">
+                        <label for="checkboxPrimary1">
+                            SN (giám sát)
+                        </label>
+                    </div>
+                </div>
+            </div>
             {{-- <div class="form-group">
                 <label for="rec">rec</label>
                 @error('rec')

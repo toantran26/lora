@@ -19,6 +19,6 @@ class GateWay extends Model
         'note',
     ];
     public function node() {
-        return $this->hasMany(Node::class);
+        return $this->hasMany(Node::class,'gateway_id');
     }
 }

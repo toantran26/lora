@@ -7,6 +7,7 @@ use App\Models\Node;
 use Illuminate\Http\Request;
 use App\Services\BackendServices\NodeServices as Services;
 use App\Services\BackendServices\GateWayServices as GateWay;
+use App\Services\BackendServices\SensorServices as Sensor;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -17,11 +18,14 @@ class NodeController extends Controller
 {
     protected $_service;
     protected $_gateway;
+    protected $_sensor;
 
-    public function __construct(Services $services, GateWay $gateway)
+    public function __construct(Services $services, GateWay $gateway, Sensor $sensor)
     {
         $this->_service = $services;
         $this->_gateway = $gateway;
+        $this->_sensor = $sensor;
+
     }
 
     public function index(Request $request) {
@@ -64,7 +68,7 @@ class NodeController extends Controller
                 $push =$gateway->code.'/'.$gateway->remote;
                 $toppic = 'add#'.$codeConver;
                 
-                    return json_encode(['success' => 'Thành công. Chúng tôi sẽ liên hệ với bạn sớm nhất!','push'=>$push,'toppic'=>$toppic]);
+                    return json_encode(['success' => 'Thêm thành công!','push'=>$push,'toppic'=>$toppic]);
 
                 // return redirect()->route('node-list')->with(['success' => 'Thêm node thành công!','dataAdd' =>$data]);
             }
@@ -72,25 +76,6 @@ class NodeController extends Controller
         }
         return response()->json(['error' => $validator->errors()->all()]);
     }
-
-    public function subInformation(Request $request)
-    {
-  
-      $validator = Validator::make($request->all(), [
-        'fullname' => 'required|max:255',
-        'email' => 'required|email',
-        'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-        'address' => 'required|max:255',
-      ]);
-      if ($validator->passes()) {
-        if ($this->_contact->storeContact($request)) {
-          return json_encode(['success' => 'Thành công. Chúng tôi sẽ liên hệ với bạn sớm nhất!']);
-        }
-      }
-      return response()->json(['error' => $validator->errors()->all()]);
-    }
-    
-
     public function edit($id) {
         $data = $this->_service->getOne($id);
         $listGateway = $this->_gateway->getAllGateWay();
@@ -109,5 +94,11 @@ class NodeController extends Controller
             return redirect()->route('node-list')->with(['success' => 'Xóa thành công !!']);
         }
         return back()->with(['error' => 'Đã có lỗi xảy ra!']);
+    }
+    public function detail($id){
+        $data = $this->_service->getOne($id);
+        $listSensor = $this->_sensor->listSensor($id,20);
+
+        return view('backend.node.detail', compact('data','listSensor'));
     }
 }

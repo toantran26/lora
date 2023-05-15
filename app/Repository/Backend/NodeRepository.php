@@ -37,6 +37,7 @@ class NodeRepository implements Contracts\NodeRepositoryInterface
         return $this->_model->create([
             'name' => $request->name ?? null,
             'code' => $request->code ?? null,
+            'type' => $request->type ?? null,
             'rec' => $request->rec ?? null,
             'gateway_id' => $request->gateway_id ?? null,
             'remote' => $request->remote ?? null,
@@ -50,6 +51,7 @@ class NodeRepository implements Contracts\NodeRepositoryInterface
                 ->update([
                     'name' => $request->name ?? null,
                     'code' => $request->code ?? null,
+                    'type' => $request->type ?? null,
                     'rec' => $request->rec ?? null,
                     'gateway_id' => $request->gateway_id ?? null,
                     'remote' => $request->remote ?? null,
